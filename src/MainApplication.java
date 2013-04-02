@@ -7,10 +7,11 @@ public class MainApplication {
 	public static void main(String [] args)
 	{
 		long initialTime = System.currentTimeMillis();
+		System.out.println("Integer max: " + Integer.MAX_VALUE);
 		SmallPrimeGenerator spg = new SmallPrimeGenerator();
-		Num two = new Num("2");
+		Num two = new Num("1235");
 		Num number1 = new Num(two);
-		for (int counter = 0; counter < 10; counter++)
+		for (int counter = 0; counter < 100; counter++)
 		{
 			System.out.println(number1.val()+" + " + two.val());
 			number1.add(two);

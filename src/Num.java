@@ -29,8 +29,31 @@ public class Num {
 	
 	public void add(String addend)
 	{
+	  if (value.length() > 9 || addend.length() > 9)
+	  {
+	        
+	   
+	    
+	  }
+	  // If they are easily converted to integers we don't worry about it.
+	  else
+	  {
+	    value = Integer.toString((Integer.parseInt(value) + Integer.parseInt(addend))); 
+	  }
+	  
+	  
+	  
+	  
+	  
+	}
+	
+	
+	// Old implementation
+	public void add(String addend, String this_is_the_old_implementation)
+	{
 	  int stringLength = value.length();
 		boolean hasCarryOver = false;
+		boolean addedDigit = false;
 		Integer sum = 0;
 //		System.out.println("String length is: " + stringLength);
 		StringBuilder test = new StringBuilder(value);
@@ -39,8 +62,17 @@ public class Num {
 		{
 		  if ((value.length() - 1 - charCounter) >  (addend.length() - 1 - charCounter))
       {
+		    System.out.println("value length: " + value.length());
+		    System.out.println("addend length: " + addend.length());
+		  //  System.out.println("We added a digit to addend.");
         addend = "0" + addend;
+        System.out.println("Addend is: " + addend);
+        addedDigit = true;
       }
+		  else
+		  {
+		    addedDigit = false;
+		  }
 //		  System.out.println("value position: " + (value.length() - 1 - charCounter) +
 //		      "\naddend position: " + (addend.length() - 1 - charCounter));
 			Integer ab = Integer.parseInt(String.valueOf(value.charAt(value.length() - 1 - charCounter)));
@@ -84,8 +116,12 @@ public class Num {
 			setValue(test.toString());
 			if (hasCarryOver)
 			{ 
-			  StringBuilder newTest = new StringBuilder("1" + test);
-			  test = newTest;
+			  if (test.length() == 1 || addedDigit == true)
+			  {
+			    StringBuilder newTest = new StringBuilder("1" + test);
+			    test = newTest;
+			    addedDigit = false;
+			  }
 			}
 			setValue(test.toString());
 			System.out.println("value is: " + value);
