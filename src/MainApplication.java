@@ -8,11 +8,13 @@ public class MainApplication {
 	{
 		long initialTime = System.currentTimeMillis();
 		SmallPrimeGenerator spg = new SmallPrimeGenerator();
-		Num number1 = new Num("2");
-		number1.add(number1);
-		number1.add(number1);
-		number1.add(number1);
-		number1.add(number1);
+		Num two = new Num("2");
+		Num number1 = new Num(two);
+		for (int counter = 0; counter < 10; counter++)
+		{
+			System.out.println(number1.val()+" + " + two.val());
+			number1.add(two);
+		}
 		System.out.println(number1.val());
 //		spg.generate(5);
 		System.out.println("It tooks " + (System.currentTimeMillis() - initialTime) / 1000 + " seconds.");
