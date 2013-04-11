@@ -9,9 +9,9 @@ public class MainApplication {
 		long initialTime = System.currentTimeMillis();
 		System.out.println("Integer max: " + Integer.MAX_VALUE);
 		SmallPrimeGenerator spg = new SmallPrimeGenerator();
-		Num two = new Num("1235");
+		Num two = new Num("3");
 		Num number1 = new Num(two);
-		for (int counter = 0; counter < 100; counter++)
+		for (int counter = 0; counter < 1000000; counter++)
 		{
 			System.out.println(number1.val()+" + " + two.val());
 			number1.add(two);

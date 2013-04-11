@@ -31,22 +31,28 @@ public class Num {
 	{
 	  if (value.length() > 9 || addend.length() > 9)
 	  {
-	        
-	   
-	    
+	    // The idea here will be to add multiple integers together in 8 digit chunks and move the carryover as needed.
+	    // Hopefully it won't be too painful.
 	  }
-	  // If they are easily converted to integers we don't worry about it.
-	  else
+	  else 
 	  {
+	    // If they are easily converted to integers we don't worry about it.
 	    value = Integer.toString((Integer.parseInt(value) + Integer.parseInt(addend))); 
 	  }
-	  
-	  
-	  
-	  
-	  
 	}
 	
+	public void subtract(String addend)
+	{
+	  if (value.length() > 9 || addend.length() > 9)
+	  {
+	    
+	  }
+	  else
+	  {
+	    // If they are easily converted to integers we don't worry about it.
+	    value = Integer.toString(Integer.parseInt(value) + Integer.parseInt(addend));
+	  }
+	}
 	
 	// Old implementation
 	public void add(String addend, String this_is_the_old_implementation)
