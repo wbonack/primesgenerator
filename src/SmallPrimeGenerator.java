@@ -1,7 +1,4 @@
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.PriorityQueue;
-
 
 public class SmallPrimeGenerator {
 	void generate(int ceiling)
@@ -32,14 +29,6 @@ public class SmallPrimeGenerator {
 			q2.add(toAdd);
 		}
 		
-
-//		itr = numbers.iterator();
-		
-//		while (!q.isEmpty())
-//		{
-//			System.out.print(q.poll() + " ");
-//		}
-		
 		// For visibility purposes
 		System.out.println();
 		
@@ -50,6 +39,7 @@ public class SmallPrimeGenerator {
 			if ( !q2.contains(primeCheck) )
 			{
 				System.out.print(primeCheck + " ");
+				
 				primeCounter++;
 				localCounter++;
 			}
@@ -62,7 +52,6 @@ public class SmallPrimeGenerator {
 			
 		}
 		System.out.println();
-		System.out.println("There are " + primeCounter + " primes in the first " + topNumber + " numbers.");
-		
+		System.out.println("There are " + primeCounter + " primes in the first " + topNumber + " numbers.");		
 	}
 }
