@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.PriorityQueue;
 
 public class SmallPrimeGenerator {
 	void generate(int ceiling)
