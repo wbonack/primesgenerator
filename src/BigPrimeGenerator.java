@@ -94,9 +94,6 @@ public class BigPrimeGenerator {
 		System.out.println("PrimeCounter: " + primeCounter);
 		
 		System.out.println("It tooks " + ((System.currentTimeMillis() - initialTime) / 1000) + " seconds.");
-
-		
-		
 		
 	}
 
