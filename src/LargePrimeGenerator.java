@@ -19,7 +19,7 @@ class LargePrimeGenerator
     public void put(BigInteger key, String value)
     {
       try {
-        LargePrimeGenerator.execCmd("redis-cli set " + classType + ":" + key  + " " + value);
+        String result = LargePrimeGenerator.execCmd("redis-cli set " + classType + ":" + key  + " " + value);
       }
       catch (Exception e)
       {
@@ -31,7 +31,12 @@ class LargePrimeGenerator
     public void put(BigInteger key, BigInteger value)
     {
       try {
-        LargePrimeGenerator.execCmd("redis-cli set " + classType + ":" + key  + " " + value);
+        String result = LargePrimeGenerator.execCmd("redis-cli set " + classType + ":" + key  + " " + value);
+
+        if (result == "OK")
+        {
+          System.out.println("Ran successfully");
+        }
       }
       catch (Exception e)
       {
@@ -42,14 +47,24 @@ class LargePrimeGenerator
 
     public String get(BigInteger key)
     {
+      String result;
       try {
-         return LargePrimeGenerator.execCmd("redis-cli set " + classType + ":" + key);
+         result = LargePrimeGenerator.execCmd("redis-cli get " + classType + ":" + key);
+         System.out.println(result);
       }
       catch (Exception e)
       {
 
         return "There was an error";
 
+      }
+      if (result == "null" || result == null)
+      {
+        return null;
+      }
+      else
+      {
+        return result;
       }
     }
   }
@@ -68,7 +83,6 @@ class LargePrimeGenerator
 
     for ( ; lower.compareTo(limit) < 0 ; lower = upper)
     {
-      System.out.println("we've started!");
       upper = lower.multiply(BigInteger.valueOf(2));
       if (upper.compareTo(limit) >= 0)
       {
@@ -106,12 +120,16 @@ class LargePrimeGenerator
       {
         if (current_digit == 1 || (current_digit == 3 && !current.equals(BigInteger.valueOf(3))) || current_digit == 7 || current_digit == 9)
         {
+          System.out.println("notPrimeMap");
+          System.out.println(notPrimeMap.get(current));
+          System.out.println("redisPrimeMap");
+          System.out.println(redisPrimeMap.get(current) );
 
-          if (notPrimeMap.get(current) == null && redisPrimeMap.get(current) == null )
+          if (notPrimeMap.get(current) == null || redisPrimeMap.get(current) == null )
           {
             primeMap.put(current,current);
             redisPrimeMap.put(current, current);
-            System.out.println(current);
+            //System.out.println(current);
           }
 
           if (current_digit == 9)
@@ -143,7 +161,7 @@ class LargePrimeGenerator
             {
               primeMap.put(current,current);
               redisPrimeMap.put(current, current);
-              System.out.println(current);
+              //System.out.println(current);
             }
             current_digit = 3;
             current = BigInteger.valueOf(3);
@@ -154,7 +172,7 @@ class LargePrimeGenerator
             {
               primeMap.put(current,current);
               redisPrimeMap.put(current, current);
-              System.out.println(current);
+              //System.out.println(current);
             }
             current_digit = 5;
             current = BigInteger.valueOf(5);
@@ -165,9 +183,9 @@ class LargePrimeGenerator
             {
               if (notPrimeMap.get(current) == null && redisPrimeMap.get(current) == null )
               {
-                redisPrimeMap.put(current,current);
+                primeMap.put(current,current);
                 redisPrimeMap.put(current, current);
-                System.out.println(current);
+                //System.out.println(current);
               }
               current_digit = 9;
               current = BigInteger.valueOf(9);
@@ -189,7 +207,15 @@ class LargePrimeGenerator
     //return s.hasNext() ? s.next() : "";
     Runtime rt = Runtime.getRuntime();
     String[] commands = {"system.exe","-get t"};
+    //System.out.println(cmd);
     Process proc = rt.exec(cmd);
+    try {
+    proc.waitFor();
+    }
+    catch (Exception e)
+    {
+
+    }
 
     BufferedReader stdInput = new BufferedReader(new 
         InputStreamReader(proc.getInputStream()));
